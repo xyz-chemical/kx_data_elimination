@@ -1,0 +1,242 @@
+<odoo>
+    <record id="view_eliminate_form" model="ir.ui.view">
+        <field name="name">Delete Data</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <form string="Data Wipe" edit="0" create="0" delete="0">
+                <div class="container mt-4" name="data-clean">
+                    <div class="row mb-4">
+                        <div class="col-12 text-center">
+                            <h2 class="fw-bold text-danger mb-2">
+                                Data Wipe (Careful Attention Required)
+                            </h2>
+                            <p class="text-muted">
+                                Data is permanently removed from the database through direct SQL
+                                queries. This operation is irreversible.
+                            </p>
+                            <hr class="my-3"/>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-light">
+                                    <strong>Global Actions</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row align-items-center mb-3">
+                                        <label for="clear_all"
+                                            class="col-lg-3 col-md-4 col-sm-5 fw-bold text-end">
+                                            Clear All:
+                                        </label>
+                                        <div class="col">
+                                            <button string="Wipe All Transactions Except Master Data"
+                                                type="object" name="clear_all" class="btn btn-danger"
+                                                confirm="Please confirm to delete the data?"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-header bg-light">
+                                    <strong>Sales &amp; Commerce</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row align-items-center mb-3">
+                                        <label for="clear_sales" class="col-sm-4 fw-bold text-end">
+                                            Sales:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <button string="Wipe All Sales Order Data" type="object"
+                                                name="clear_sales" class="btn btn-outline-danger "
+                                                confirm="Please confirm to erase the select data?"/>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center mb-3">
+                                        <label for="clear_pos" class="col-sm-4 fw-bold text-end">
+                                            POS:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <button string="Wipe All POS Order Data" type="object"
+                                                name="clear_pos" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <label for="clear_purchase" class="col-sm-4 fw-bold text-end">
+                                            Purchase:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <button string="Wipe All Purchase Order and Requisition Data"
+                                                type="object" name="clear_purchase" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-header bg-light">
+                                    <strong>Operations</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row align-items-center mb-3">
+                                        <label for="clear_expense" class="col-sm-4 fw-bold text-end">
+                                            Expense:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <button string="Wipe All Expense and Sheet" type="object"
+                                                name="clear_expense" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center mb-3">
+                                        <label for="clear_mrp" class="col-sm-4 fw-bold text-end">
+                                            MRP:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <button string="Wipe All Manufacturing Order" type="object"
+                                                name="clear_mrp" class="btn btn-outline-danger me-2"
+                                                confirm="Please confirm to erase the select data?"/>
+                                            <button string="Wipe All BOM" name="clear_mrp_bom"
+                                                type="object" class="btn btn-outline-danger mt-2 mt-lg-0"
+                                                confirm="Please confirm to erase the select data?"/>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <label for="clear_inventory" class="col-sm-4 fw-bold text-end">
+                                            Inventory:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <button string="Wipe All Move/Picking/Package/Lot" type="object"
+                                                name="clear_inventory" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-header bg-light">
+                                    <strong>Accounting &amp; Project</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row align-items-center mb-3">
+                                        <label for="clear_account" class="col-sm-4 fw-bold text-end">
+                                            Accounting:
+                                            <span title="Values set here are company-specific."
+                                                groups="base.group_multi_company"/>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <button string="Wipe All Voucher/Invoice/Bill" type="object"
+                                                name="clear_account" class="btn btn-outline-danger me-2 mb-2"
+                                                confirm="Please confirm to erase the select data?"/>
+                                            <button string="Wipe and reset Account Chart" type="object"
+                                                name="clear_account_chart" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <label for="clear_project" class="col-sm-4 fw-bold text-end">
+                                            Project:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <button string="Wipe All Project/Task/Forecast" type="object"
+                                                name="clear_project" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-header bg-light">
+                                    <strong>Quality &amp; Web</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row align-items-center mb-3">
+                                        <label for="clear_quality" class="col-sm-4 fw-bold text-end">
+                                            Quality:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <button string="Wipe All Quality" type="object"
+                                                name="clear_quality" class="btn btn-outline-danger me-2 mb-2"
+                                                confirm="Please confirm to erase the select data?"/>
+                                            <button string="Wipe All Quality Setting" type="object"
+                                                name="clear_quality_setting" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <label for="clear_website" class="col-sm-4 fw-bold text-end">
+                                            Website/Blog:
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <button string="Wipe All Website/Blog" type="object"
+                                                name="clear_website" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-light">
+                                    <strong>Base Models</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <label for="clear_product"
+                                            class="col-lg-3 col-md-4 col-sm-5 fw-bold text-end">
+                                            General Data:
+                                        </label>
+                                        <div class="col d-flex flex-wrap gap-2">
+                                            <button string="Wipe All Product" type="object"
+                                                name="clear_product" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                            <button string="Wipe All Product Attribute" type="object"
+                                                name="clear_product_attribute" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                            <button string="Wipe All Message" type="object"
+                                                name="clear_message" class="btn btn-outline-danger"
+                                                confirm="Please confirm to erase the select data?"/>
+                                            <button string="Reset Category And Location Complete Name"
+                                                type="object" class="btn btn-outline-danger"
+                                                name="reset_category_location_name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_eliminate_data" model="ir.actions.act_window">
+        <field name="name">Wipe Data</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_eliminate_form"/>
+        <field name="target">inline</field>
+    </record>
+
+    <menuitem id="menu_delete_data" name="Data Wipe" sequence="1"
+        action="action_eliminate_data" parent="base.menu_administration"
+        groups="base.group_system"/>
+</odoo>
